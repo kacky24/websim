@@ -9,6 +9,9 @@
 
 ## Requirement
 - python 3.6.1
+- selenium
+- pyyaml
+- easydict
 
 ## Reference
 ### code sample
