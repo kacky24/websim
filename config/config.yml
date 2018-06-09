@@ -1,0 +1,2 @@
+chromedriver_path: "./chromedriver"
+alpha_path: "./alphas.txt"
