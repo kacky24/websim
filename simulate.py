@@ -47,6 +47,7 @@ def single_simulate(driver, alpha):
         actions = webdriver.ActionChains(driver)
         actions.send_keys(alpha).perform()
         elem.click()
+        elem.click()
         elements = driver.find_elements_by_class_name('sim-action-simulate')
         for e in elements:
             e.click()
