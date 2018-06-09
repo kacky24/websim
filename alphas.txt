@@ -1,0 +1,8 @@
+rank(sales/assets)
+close>sum(close,20)/20?1.6*rank(-delta(close,2)):rank(-delta(close,2))
+rank(tradewhen(volume>adv20,-returns,-1))
+sum(sign(delta(close,1)),4)==-4?0:rank(-delta(close,2))
+rank(delay(close,2)-ts_regression(close,vwap,60,0,3))
+Grouprank(subindustry, est_netprofit/cap)
+rank(tradewhen(volume>adv20,-returns,-1))
+-rank(delta(close,2))*(1-rank(decay_linear(volume/sum(volume,30),10)))
