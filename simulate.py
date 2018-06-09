@@ -7,14 +7,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from utils import login
+from utils import Config
 
 
 def main(args):
+    # load config
+    config = Config(args.config_path)
     # load txt
-    with open(args.alpha_path, 'r') as f:
+    with open(config.alpha_path, 'r') as f:
         lines = f.readlines()
 
-    driver = webdriver.Chrome(args.chromedriver_path)
+    driver = webdriver.Chrome(config.chromedriver_path)
 
     for alpha in lines:
         driver.get(args.access_url)
@@ -63,12 +66,10 @@ def single_simulate(driver, alpha):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simulation')
-    parser.add_argument('--chromedriver_path', type=str,
-                        default="./chromedriver")
+    parser.add_argument('--config_path', type=str,
+                        default='./config/config.yml')
     parser.add_argument(
             '--access_url', type=str,
-            default="https://websim.worldquantchallenge.com/simulate")
-    parser.add_argument('--alpha_path', type=str,
-                        default='./alphas.txt')
+            default='https://websim.worldquantchallenge.com/simulate')
     args = parser.parse_args()
     main(args)
