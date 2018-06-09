@@ -1,6 +1,8 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import yaml
+from easydict import EasyDict as edict
 
 
 def login(driver, websim_config):
@@ -22,3 +24,12 @@ def login(driver, websim_config):
     except Exception as ex:
         print(ex.message)
         pass
+
+
+def Config(filename):
+
+    with open(filename, 'r') as f:
+        parser = edict(yaml.load(f))
+    for x in parser:
+        print '{}: {}'.format(x, parser[x])
+    return parser
