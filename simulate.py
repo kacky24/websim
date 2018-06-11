@@ -8,6 +8,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from utils import login
 from utils import Config
+from utils import setting
+import time
 
 
 def main(args):
@@ -18,6 +20,30 @@ def main(args):
         lines = f.readlines()
 
     driver = webdriver.Chrome(config.chromedriver_path)
+
+    # access url
+    driver.get(args.access_url)
+    # login
+    if driver.title == "Login / Register":
+        login(driver, websim_config)
+    # setting
+    if args.change_setting:
+        WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, '.test-settingslink')))
+        elements = driver.find_elements_by_class_name('test-settingslink')
+        for e in elements:
+            e.click()
+        setting(driver, 'region', config.region)
+        setting(driver, 'univid', config.univid)
+        setting(driver, 'delay', config.delay)
+        setting(driver, 'decay', config.decay)
+        setting(driver, 'optrunc', config.optrunc)
+        setting(driver, 'opneut', config.opneut)
+        time.sleep(0.5)
+        for e in elements:
+            e.click()
+        time.sleep(0.5)
 
     for alpha in lines:
         driver.get(args.access_url)
@@ -31,6 +57,13 @@ def main(args):
             single_simulate(driver, alpha.strip())
         except TimeoutException as ex:
             print(ex.args)
+            pass
+
+        # access url
+        driver.get(args.access_url)
+        # login
+        if driver.title == "Login / Register":
+            login(driver, websim_config)
 
 
 def single_simulate(driver, alpha):
@@ -72,5 +105,7 @@ if __name__ == '__main__':
     parser.add_argument(
             '--access_url', type=str,
             default='https://websim.worldquantchallenge.com/simulate')
+    parser.add_argument('--change_setting', type=bool,
+                        default=True)
     args = parser.parse_args()
     main(args)
