@@ -4,7 +4,6 @@ from config.local_config import websim_config
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from utils import login
 from utils import Config
@@ -40,16 +39,14 @@ def main(args):
         setting(driver, 'decay', config.decay)
         setting(driver, 'optrunc', config.optrunc)
         setting(driver, 'opneut', config.opneut)
+        # save
+        driver.find_elements_by_id('save-sim-settings')[0].click()
         time.sleep(0.5)
         for e in elements:
             e.click()
         time.sleep(0.5)
 
     for alpha in lines:
-        driver.get(args.access_url)
-        # login
-        if driver.title == "Login / Register":
-            login(driver, websim_config)
         # wait moving to simulate page
         WebDriverWait(driver, 60).until(
                 lambda driver: driver.title.lower().startswith('simulate'))
