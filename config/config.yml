@@ -1,9 +1,10 @@
 chromedriver_path: "./chromedriver"
 alpha_path: "./alphas.txt"
 region: "USA"
+
+# setting
 univid: "TOP3000"
 delay: "1"
 decay: "4"
 optrunc: "0.01"
-opneut: "subindustry"
-# 頭文字小文字
+opneut: "subindustry"  # 頭文字小文字
