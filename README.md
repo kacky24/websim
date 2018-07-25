@@ -1,11 +1,12 @@
-# Repository for IQ championship
+# Repository for WebSim
 
 ## How to use
-1. requirements.txtから必要ライブラリをインストール(pip install -r requirements.txt)
-2. chrome用のweb driverをインストールして任意の場所に置く(https://sites.google.com/a/chromium.org/chromedriver/)
-3. [config/local_config.py](https://github.com/kacky24/websim/blob/master/config/local_config.py)に自分のアドレスとパスワードを記入
-4. [config/config.yml](https://github.com/kacky24/websim/blob/master/config/config.yml)にweb driverの場所、シミュレーション条件などの設定を記入
-5. python simulate.pyでalphas.txt内のアルファを自動でシミュレーション
+1. Install libraries from requirements.txt (pip install -r requirements.txt)
+2. Download web driver for chrome in any directory (https://sites.google.com/a/chromium.org/chromedriver/)
+3. Write your e-mail adress and password in [config/local_config.py](https://github.com/kacky24/websim/blob/master/config/local_config.py)
+4. Write settings in [config/config.yml](https://github.com/kacky24/websim/blob/master/config/config.yml)
+5. You can simulate alphas in alphas.txt automatically by python simulate.py
+
 
 ## Requirement
 - python 3.6.1
@@ -13,12 +14,8 @@
 - pyyaml
 - easydict
 
-## Reference
-### code sample
-- https://github.com/nhatson/websim
-- https://github.com/d07s1d0s4d1/alphatron
-- https://github.com/robotpy/robotpy-websim
 
-### how to use selenium
+## Reference
+### how to use selenium (in Japanese)
 - https://www.inet-solutions.jp/technology/python-selenium/
 - https://qiita.com/kinpira/items/383b0fbee6bf229ea03d

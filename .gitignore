@@ -4,3 +4,5 @@ chrome*
 __pycache__
 .python-version
 *.pyc
+
+README_ja.md
